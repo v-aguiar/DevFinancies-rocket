@@ -7,9 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- **************** CSS ****************** -->
+  <!-- **************** CSS & FONTS ****************** -->
 
   <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600&display=swap" rel="stylesheet">
 
   <!-- ************** SCRIPTS **************** -->
 
@@ -18,63 +22,66 @@
 
 <body>
   <header id="header">
-    <h1><a href="/" class="logo">dev.Financie<span class="logo text-green">$</span></a></h1>
+    <h1><a href="/" class="logo">dev<span class="logo text-green">.</span>Financie<span class="logo text-green">$</span></a></h1>
   </header>
 
   <main>
-    <section class="balance">
-      <h2 class="balance title">Balance</h2>
+    <div id="container">
+        
+      <section class="balance">
+        <h2 class="balance title --text-white">Balance</h2>
 
-      <div class="balance incomes">
-        <h3>Incomes</h3>
-        <p class="--amount-text">R$ 5.000,00</p>
-      </div>
+        <div class="balance incomes -card">
+          <h3>Incomes</h3>
+          <p class="--amount-text">R$ 5.000,00</p>
+        </div>
 
-      <div class="balance expenses">
-        <h3>Expenses</h3>
-        <p class="--amount-text">-R$ 4.500,00</p>
-      </div>
+        <div class="balance expenses -card">
+          <h3>Expenses</h3>
+          <p class="--amount-text">-R$ 4.500,00</p>
+        </div>
 
-      <div class="balance total">
-        <h3>Total</h3>
-        <p class="--amount-text">R$ 500,00</p>
-      </div>
-    </section>
+        <div class="balance total -card">
+          <h3 class="--text-white">Total</h3>
+          <p class="--amount-text --text-white">R$ 500,00</p>
+        </div>
+      </section>
 
-    <section class="transactions">
-      <h2 class="transactions title">Transactions</h2>
+      <section id="transactions">
+        <h2 class="transactions title">Transactions</h2>
 
-      <table>
-        <caption class="sr-only">Table transactions, which shows a description of each transaction, in each row</caption>
-        <colgroup span="3" class="columns"></colgroup>
-        <thead>
-          <tr>
-            <th scope="col">Description</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Date</th>
-          </tr>
-        </thead>
+        <table>
+          <caption class="sr-only">Table transactions, which shows a description of each transaction, in each row</caption>
+          <colgroup span="3" class="columns"></colgroup>
+          <thead>
+            <tr>
+              <th scope="col">Description</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr scope="row">
-            <td class="table-description-field">Electric Energy</td>
-            <td class="table-value-field">-R$ 500,00</td>
-            <td class="table-date-field">28/07/2022</td>
-          </tr>
-          <tr scope="row">
-            <td class="table-description-field">Water Supply</td>
-            <td class="table-date-field">-R$ 800,00</td>
-            <td>29/07/2022</td>
-          </tr>
-          <tr scope="row">
-            <td class="table-description-field">Gambling</td>
-            <td class="table-date-field">\R$ 15.000,00</td>
-            <td>30/07/2022</td>
-          </tr>
-        </tbody>
-      </table>
+          <tbody>
+            <tr>
+              <td class="table-description-field">Electric Energy</td>
+              <td class="table-value-field">-$ 500,00</td>
+              <td class="table-date-field">2022-07-28</td>
+            </tr>
+            <tr>
+              <td class="table-description-field">Water Supply</td>
+              <td class="table-value-field">-$ 800,00</td>
+              <td class="table-date-field">2022-07-29</td>
+            </tr>
+            <tr>
+              <td class="table-description-field">Gambling</td>
+              <td class="table-value-field">$ 15.000,00</td>
+              <td class="table-date-field">2022-07-30</td>
+            </tr>
+          </tbody>
+        </table>
 
-    </section>
+      </section>
+    </div>
   </main>
 
   <footer id="footer">
