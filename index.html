@@ -29,26 +29,28 @@
     <div id="container">
         
       <section class="balance">
-        <h2 class="balance title --text-white">Balance</h2>
+        <h2 class="balance title sr-only --text-white">Balance</h2>
 
         <div class="balance incomes -card">
-          <h3>Incomes</h3>
-          <p class="--amount-text">R$ 5.000,00</p>
+          <h3>Incomes <img src="./assets/Entradas.svg" alt="Green arrow pointing up icon"></h3>
+          <p class="--amount-text --text-green">R$ 5.000,00</p>
         </div>
 
         <div class="balance expenses -card">
-          <h3>Expenses</h3>
-          <p class="--amount-text">-R$ 4.500,00</p>
+          <h3><span>Expenses </span><img src="./assets/Saídas.svg" alt="Red arrow pointing down icon"> </h3>
+          <p class="--amount-text --text-red">-R$ 4.500,00</p>
         </div>
 
         <div class="balance total -card">
-          <h3 class="--text-white">Total</h3>
-          <p class="--amount-text --text-white">R$ 500,00</p>
+          <h3 class="--text-white">Total <img src="./assets/Total.svg" alt="White dollar sign icon"></h3>
+          <p class="--amount-text total --text-white">R$ 500,00</p>
         </div>
       </section>
 
       <section id="transactions">
-        <h2 class="transactions title">Transactions</h2>
+        <h2 class="title sr-only">Transactions</h2>
+
+        <a class="new-transaction-button" href="#" alt="New transaction button">+New transaction</a>
 
         <table>
           <caption class="sr-only">Table transactions, which shows a description of each transaction, in each row</caption>
@@ -58,23 +60,25 @@
               <th scope="col">Description</th>
               <th scope="col">Amount</th>
               <th scope="col">Date</th>
+              <th></th>
             </tr>
           </thead>
 
           <tbody>
             <tr>
               <td class="table-description-field">Electric Energy</td>
-              <td class="table-value-field">-$ 500,00</td>
+              <td class="table-value-field --text-red">-$ 500,00</td>
               <td class="table-date-field">2022-07-28</td>
+              <td></td>
             </tr>
             <tr>
               <td class="table-description-field">Water Supply</td>
-              <td class="table-value-field">-$ 800,00</td>
+              <td class="table-value-field --text-red">-$ 800,00</td>
               <td class="table-date-field">2022-07-29</td>
             </tr>
             <tr>
               <td class="table-description-field">Gambling</td>
-              <td class="table-value-field">$ 15.000,00</td>
+              <td class="table-value-field --text-green">$ 15.000,00</td>
               <td class="table-date-field">2022-07-30</td>
             </tr>
           </tbody>

@@ -1,9 +1,11 @@
 /* -------------------- GLOBALS ---------------- */
 
 :root {
+  /* Color variables */
   --dark-green: #2d4a22;
   --light-green: #49aa26;
   --text-grey: #969cb2;
+  --text-blue: #363f5f;
   --red: #e92929;
   --bg-white: #f0f2f5;
 }
@@ -16,10 +18,22 @@
 
   font-size: 62.5%;
   font-size: 1.4rem;
+  color: var(--text-blue);
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
 }
 
 .--text-white {
   color: #fff;
+}
+.--text-red {
+  color: var(--red);
+}
+.--text-green {
+  color: var(--light-green);
 }
 
 /* -------------------- GENERALS ---------------- */
@@ -40,7 +54,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 7rem;
+  gap: 12rem;
 }
 
 .sr-only {
@@ -94,16 +108,6 @@ body {
   width: 100%;
 }
 
-#container .balance h3 {
-  font-weight: 400;
-  font-size: 1rem;
-}
-
-#container .balance .--amount-text {
-  font-weight: 400;
-  font-size: 1.8rem;
-}
-
 #container .balance.title {
   font-weight: 300;
   margin-bottom: 0.6rem;
@@ -111,52 +115,126 @@ body {
 
 #container .balance.-card {
   background: #fff;
+
   margin-bottom: 0.6rem;
   padding: 0.8rem 1.6rem;
 
   border-radius: 0.3rem;
 
-  height: 20%;
-
+  height: 35%;
   width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-around;
 }
 
 #container .balance.total.-card {
   background: var(--light-green);
 }
 
+#container .balance h3 {
+  font-weight: 400;
+  font-size: 1.2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+#container .balance h3 img {
+  width: 2rem;
+}
+
+#container .balance .--amount-text {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+#container .balance .--amount-text.total {
+  font-weight: 500;
+  font-size: 2.4rem;
+}
+
 /* Transactions Section */
 
 #transactions {
   width: 100%;
+  /* margin-top: 3rem; */
 }
 
-#transactions .transactions.title {
+#transactions .title {
   font-weight: 400;
   margin: 1.5rem 0;
 }
+
+#transactions .new-transaction-button {
+  display: inline-block;
+  margin: 2rem 0 0.2rem;
+
+  color: var(--dark-green);
+  text-decoration: none;
+
+  transition: filter 0.2s;
+  cursor: pointer;
+
+  padding: 0.5rem 0.7rem;
+
+  border: 0.1rem solid var(--light-green);
+  border-radius: 0.9rem;
+}
+
+#transactions .new-transaction-button:hover {
+  filter: brightness(1.2);
+  color: var(--light-green);
+}
+
+/* Transaction Table */
 
 #transactions table {
   table-layout: fixed;
   text-align: left;
   width: 100%;
 
-  border-collapse: collapse;
   overflow: hidden;
 
-  background-color: #fff;
+  border-spacing: 0 1rem;
+}
+
+#transactions table tr {
+  background: #fff;
 }
 
 #transactions table th {
   background: var(--bg-white);
+
   color: var(--text-grey);
   font-weight: 400;
+
+  line-height: 1.6rem;
+}
+
+#transactions table td {
+  padding: 1.6rem;
 }
 
 #transactions table th,
 #transactions table td {
-  padding: 1.6rem;
   overflow: hidden;
-
   text-overflow: ellipsis;
+  padding-left: 7.5rem;
+}
+
+/* -------------------- FOOTER ---------------- */
+
+#footer {
+  text-align: center;
+
+  margin-bottom: 2rem;
+}
+
+#footer small {
+  color: var(--text-grey);
 }
