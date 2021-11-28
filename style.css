@@ -117,8 +117,6 @@ main {
 }
 
 #balance .-card {
-  background: #fff;
-
   margin-bottom: 0.6rem;
   padding: 1.2rem 1.6rem;
 
@@ -134,8 +132,9 @@ main {
   white-space: nowrap;
 }
 
-#balance .total.-card {
-  background: var(--light-green);
+#balance .expenses.-card,
+#balance .incomes.-card {
+  background-color: #fff;
 }
 
 #balance h3 {
@@ -164,6 +163,14 @@ main {
 #balance .--amount-text.total {
   font-weight: 500;
   font-size: 2.4rem;
+}
+
+.bg-red {
+  background: var(--red);
+}
+
+.bg-lgreen {
+  background: var(--light-green);
 }
 
 /* Transactions Section ---------------------------------------- */
@@ -382,7 +389,7 @@ main {
     height: 17rem;
   }
 
-  #container .balance {
+  #container #balance {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
