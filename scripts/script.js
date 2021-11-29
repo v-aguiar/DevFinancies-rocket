@@ -1,20 +1,3 @@
-const transactionsData = [
-  {
-    description: 'lele',
-    amount: 1234,
-    date: '1234'
-  },
-  {
-    description: 'lolo',
-    amount: 5678,
-    date: '5678'
-  },
-  {
-    description: 'lala',
-    amount: 91011,
-    date: '9AB'
-  },
-]
 // Handles opening, closing and other Modal functions
 const Modal = {
   // Open Modal
@@ -28,24 +11,51 @@ const Modal = {
     modal.classList.remove('active')
   }
 }
-// Handle all Transaction currency amount math operations to display the totals on Balance Section
-const Transactions = {
-  all: transactionsData,
+// Handle storage actions
+const Storage = {
+  get(){
+    let keys = []
+    
+    // getting and listing all localStorage keys from stack overflow answer at: https://stackoverflow.com/a/8419509/15816026
+    for (i = 0; i < localStorage.length; i++ ) {
+      keys.push(JSON.parse(localStorage.getItem( localStorage.key( i ) )))
+    }
 
-  add(transaction) {
-    Transactions.all.push(transaction)
+    return keys || []
   },
 
-  remove(index) {
-    Transactions.all.splice(index, 1)
+  set( transaction ) {
+    localStorage.setItem( `key:${transaction.amount}`, JSON.stringify( transaction ) )
 
     App.reload()
+  },
+
+  clear() {
+    localStorage.clear()
+  },
+
+  remove( transaction ) {
+    localStorage.removeItem( `key:${transaction.amount}`)
+
+    App.reload()
+  }
+}
+// Handle all Transaction currency amount math operations to display the totals on Balance Section
+const Transactions = {
+  all: Storage.get(),
+
+  add(transaction) {
+    Storage.set( transaction )
+  },
+
+  remove(transaction) {
+    Storage.remove( transaction )
   },
 
   incomes() {
     let sumIncomes = 0
 
-    transactionsData.forEach((transaction) => {
+    Storage.get().forEach((transaction) => {
       transaction.amount > 0 ? sumIncomes += Number(transaction.amount) : 0
     })
     return Utils.fomartCurrency(sumIncomes)
@@ -54,7 +64,7 @@ const Transactions = {
   expenses() {
     let sumExpenses = 0
 
-    transactionsData.forEach((transaction) => {
+    Storage.get().forEach((transaction) => {
       transaction.amount < 0 ? sumExpenses += Number(transaction.amount) : 0
     })
     return Utils.fomartCurrency(sumExpenses)
@@ -63,7 +73,7 @@ const Transactions = {
   total() {
     let sumTotal = 0
 
-    transactionsData.forEach((transaction) => {
+    Storage.get().forEach((transaction) => {
       sumTotal += Number(transaction.amount)
     })
 
@@ -135,36 +145,26 @@ const TransactionFields = {
   },
 
   clearTransactions() {
-    this.trContainer.innerHTML = ""
+    TransactionFields.trContainer.innerHTML = ""
   },
 
-  deleteCurrentTransaction(event) {
-    // const currentTr = event.path[2]
-    // currentTr.innerHTML = ""
-    // console.log(Transactions.all)
-    // console.log(event.path[2].innerText)
-
-    let i = -1
-    Transactions.all.forEach( transaction => {
-      i++
-      event.path[2].innerText.includes(transaction.description) ? Transactions.remove(i) : 'nothing to see here'
-      Transactions.updateBalance()
+  deleteCurrentTransaction(event) {    
+    Storage.get().forEach( transaction => {
+      event.path[2].innerText.trim().includes(transaction.description.trim()) ? Transactions.remove(transaction) : ''
     })
+    App.reload()
   }
 }
 // Handle App inicialization and reloading
 const App = {
   init() {
-    const isEmpty = ( Transactions.all.length !== 0 ) 
-
-    // Add all transactions to the page 
-    Transactions.all.forEach((transaction) => {
-      isEmpty ? TransactionFields.addTransaction(transaction) : 0
-
-      Transactions.updateBalance()
-    })
+    // Initialize all transactions checking if there is any transaction stored at localStorage, and shows them on the screen
+    Storage.get().forEach(( transaction ) => {TransactionFields.addTransaction( transaction )})
+    
+    // Update all balance values (incomes, expenses and total) with the current [stored | on screen] transactions
+    Transactions.updateBalance()
   },
-
+  
   reload() {
     TransactionFields.clearTransactions()
     App.init()
@@ -184,8 +184,6 @@ const Form = {
     }
   },
 
-
-
   clearInputs( event ) {
     event.target[0].value = ""
     event.target[1].value = ""
@@ -199,7 +197,7 @@ const Form = {
     const amount = event.target[1].value * 100
     const date = event.target[2].value
 
-    Transactions.add({description: description, amount: amount, date: date})
+    Storage.set({description: description, amount: amount, date: date})
 
     App.reload()
     Form.clearInputs( event )
@@ -207,40 +205,5 @@ const Form = {
   },
 }
 
-const Storage = {
-  get( transaction ){
-    console.log(localStorage)
-    localStorage.getItem(transaction)
-
-  },
-
-  set( transaction ) {
-    localStorage.setItem( `key:${transaction}`, JSON.stringify( transaction ) )
-  },
-
-  clear() {
-    localStorage.clear()
-  },
-
-  remove( transaction ) {
-    localStorage.removeItem( `key:${transaction}`)
-
-    Transactions.all.forEach((transaction) => {
-      // if ( `key:${transaction}` == localStorage.getItem(transaction))
-      console.log(localStorage.getItem(transaction))
-    })
-
-  },
-
-  add() {
-    Transactions.all.forEach( (transaction) => {
-      Storage.set( transaction )
-    })
-  }
-}
 
 App.init()
-
-Storage.clear()
-Storage.add()
-Storage.get()

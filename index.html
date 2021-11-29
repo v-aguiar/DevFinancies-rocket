@@ -33,7 +33,6 @@
 
   <main>
     <div id="container">
-        
       <section id="balance">
         <h2 class="title sr-only --text-white">Balance</h2>
 
@@ -92,24 +91,22 @@
         <form id="modal-form" action="" onsubmit="{Form.submit(event)}">
           <h1 class="modal-title">New transaction</h1>
   
-          <div class="input-group">
+          <div class="input-group --description">
             <label class="sr-only" for="description">Enter transaction description</label>
             <input required type="text" autocomplete="off" name="Transaction description" id="description" placeholder="Description">
           </div>
-  
-          <div class="input-group">
+          <div class="input-group --amount">
             <label class="sr-only" for="amount">Enter Transaction Amount</label>
-            <input required type="number" step="0.01" name="Transaction amount" id="amount" placeholder="$ 0,00">
+            <input required type="number" step="0.05" name="Transaction amount" id="amount" placeholder="$ 0,00">
             <p class="amount-requirements">Use the "-" (minus) for expenses, and "," (comma) for fractions.</p>
           </div>
-  
-          <div class="input-group">
+          <div class="input-group --date">
             <label class="sr-only" for="date">Enter transaction date</label>
             <input required type="date" name="Transaction date" id="date">
           </div>
           
           <div class="modal-buttons">
-            <a href="#" onclick="{Modal.close()}" class="btn modal-cancel">Cancel</a>
+            <a href="#" onclick="{Modal.close(event)}" class="btn modal-cancel">Cancel</a>
             <button class="btn modal-submit" type="submit">Submit</button>
           </div>
         </form>
