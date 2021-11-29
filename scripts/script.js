@@ -1,4 +1,20 @@
-const transactionsData = []
+const transactionsData = [
+  {
+    description: 'lele',
+    amount: 1234,
+    date: '1234'
+  },
+  {
+    description: 'lolo',
+    amount: 5678,
+    date: '5678'
+  },
+  {
+    description: 'lala',
+    amount: 91011,
+    date: '9AB'
+  },
+]
 // Handles opening, closing and other Modal functions
 const Modal = {
   // Open Modal
@@ -83,9 +99,9 @@ const Utils = {
 
     value = Number(Number(value) / 100).toFixed(2).replace(".",",")
 
-    value = value.toLocaleString("pt-BR", {
+    value = value.toLocaleString("en-US", {
       style: "currency",
-      currency: "BRL"
+      currency: "USD"
     })
 
     return `${signal}$ ${value}`
@@ -191,5 +207,40 @@ const Form = {
   },
 }
 
+const Storage = {
+  get( transaction ){
+    console.log(localStorage)
+    localStorage.getItem(transaction)
+
+  },
+
+  set( transaction ) {
+    localStorage.setItem( `key:${transaction}`, JSON.stringify( transaction ) )
+  },
+
+  clear() {
+    localStorage.clear()
+  },
+
+  remove( transaction ) {
+    localStorage.removeItem( `key:${transaction}`)
+
+    Transactions.all.forEach((transaction) => {
+      // if ( `key:${transaction}` == localStorage.getItem(transaction))
+      console.log(localStorage.getItem(transaction))
+    })
+
+  },
+
+  add() {
+    Transactions.all.forEach( (transaction) => {
+      Storage.set( transaction )
+    })
+  }
+}
+
 App.init()
 
+Storage.clear()
+Storage.add()
+Storage.get()
